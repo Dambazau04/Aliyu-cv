@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aliyu Bashir Lawan | Portfolio</title>
+    <meta name="description" content="Portfolio of Aliyu Bashir Lawan - CEO, Web Developer, and ICT Director">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #020c1b;
+            --bg-secondary: #0a192f;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+            --accent: #64ffda; /* Cyan/Teal Accent for contrast against dark blue */
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        section {
+            padding: 100px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--white);
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 200px;
+            height: 1px;
+            background-color: var(--text-secondary);
+            margin-left: 20px;
+            opacity: 0.5;
+        }
+
+        .highlight {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            background: transparent;
+        }
+
+        .btn:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            background: rgba(2, 12, 27, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--white);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--accent);
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-subtitle {
+            color: var(--accent);
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .hero-description {
+            font-size: 3rem;
+            color: var(--text-secondary);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-text {
+            max-width: 500px;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* --- PHOTO BOX ANIMATION --- */
+        .hero-image-container {
+            flex: 0 0 400px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .photo-box {
+            width: 300px;
+            height: 350px;
+            position: relative;
+            border-radius: 10px;
+            /* Placeholder background if no image is present */
+            background-color: var(--bg-secondary);
+            background-image: url('https://via.placeholder.com/300x350/0a192f/64ffda?text=Aliyu+Lawan'); 
+            background-size: cover;
+            background-position: center;
+            /* Animation Filter */
+            filter: grayscale(100%) contrast(1);
+            transition: var(--transition);
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        /* The Frame Border Effect */
+        .photo-box::after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent);
+            border-radius: 10px;
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        /* Hover/Touch Effects */
+        .hero-image-container:hover .photo-box,
+        .photo-box:active {
+            filter: grayscale(0%) contrast(1.1);
+            transform: translate(-5px, -5px);
+        }
+
+        .hero-image-container:hover .photo-box::after,
+        .photo-box:active::after {
+            transform: translate(10px, 10px);
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .skill-item i {
+            color: var(--accent);
+            margin-right: 10px;
+            font-size: 0.8rem;
+        }
+
+        /* --- EXPERIENCE SECTION --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--bg-secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item.left {
+            left: 0;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--bg-color);
+            border: 3px solid var(--accent);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item.right::after {
+            left: -10px;
+        }
+
+        .content-card {
+            padding: 20px 30px;
+            background-color: var(--bg-secondary);
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+            transition: var(--transition);
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+        }
+
+        .card-role {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .card-company {
+            color: var(--accent);
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .card-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .card-desc li {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            list-style: circle inside;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-text {
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border: 1px solid transparent;
+            border-radius: 4px;
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(10, 25, 47, 0.8);
+        }
+
+        textarea.input-field {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* --- ANIMATIONS --- */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                justify-content: center;
+                padding-top: 120px;
+            }
+
+            .hero-content {
+                margin-top: 50px;
+            }
+
+            .hero-text {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-image-container {
+                flex: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-description {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--bg-secondary);
+                padding: 20px;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            /* Timeline Mobile Fix */
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .timeline-item.right {
+                left: 0%;
+            }
+
+            .photo-box {
+                width: 250px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">ABL.</a>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+                <li><a href="#contact" class="btn" style="margin-top:0; padding: 8px 16px;">Hire Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content fade-in-up">
+            <p class="hero-subtitle">Hi, my name is</p>
+            <h1 class="hero-title">Aliyu Bashir Lawan.</h1>
+            <h2 class="hero-description">I build digital solutions.</h2>
+            <p class="hero-text">
+                I am a Director of ICT and Web Developer specializing in building exceptional digital experiences. Currently, I'm focused on accessible, human-centered products at 
+                <span class="highlight">Abu-Abdurrahman CodeVerge Technology</span>.
+            </p>
+            <a href="https://dambazau04.github.io/Ab2/" class="btn">Check out my work!</a>
+        </div>
+
+        <div class="hero-image-container fade-in-up">
+            <!-- 
+                INSTRUCTION: 
+                To change the image, add an 'img' tag inside .photo-box or change the background-image URL in CSS.
+                Example styling allows you to simply put the <img> tag here.
+            -->
+            <div class="photo-box">
+                <img src="images/file_0000000059ec71f89c3023467294aaff.png" alt="">
+                <style>
+                    img {
+                        width:100%; 
+                        height:100%; 
+                        object-fit:cover; 
+                        border-radius:10px;
+                    }
+                </style>
+                <!-- <img src="your-photo.jpg" alt="Aliyu Bashir Lawan" style="width:100%; height:100%; object-fit:cover; border-radius:10px;"> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title fade-in-up">About Me</h2>
+        <div class="about-grid">
+            <div class="about-text fade-in-up">
+                <p>
+                    Hello! My name is Aliyu and I enjoy creating things that live on the internet. My interest in technology started back in 2019 at <strong>Bitcags LTD</strong>, which laid the foundation for my journey into ICT and Web Development.
+                </p>
+                <p>
+                    Fast-forward to today, and I’ve had the privilege of working at an advertising agency, a start-up, and leading my own tech firm. My main focus these days is building accessible, inclusive products and digital infrastructure for clients.
+                </p>
+                <p>Here are a few technologies and areas I've been working with recently:</p>
+                
+                <ul class="skills-list">
+                    <li class="skill-item"><i class="fas fa-caret-right"></i> HTML5 & CSS3</li>
+                    <li class="skill-item"><i class="fas fa-caret-right"></i> JavaScript (ES6+)</li>
+                    <li class="skill-item"><i class="fas fa-caret-right"></i> Firebase & MySQL</li>
+                    <li class="skill-item"><i class="fas fa-caret-right"></i> Web Design (Figma, Wix)</li>
+                    <li class="skill-item"><i class="fas fa-caret-right"></i> Networking & LAN Setup</li>
+                    <li class="skill-item"><i class="fas fa-caret-right"></i> Computer Bio Setting & OS</li>
+                    <li class="skill-item"><i class="fas fa-caret-right"></i> Graphic Design (CorelDraw)</li>
+                    <li class="skill-item"><i class="fas fa-caret-right"></i> AI Tools Implementation</li>
+                </ul>
+            </div>
+            <!-- Additional Info / Education Block -->
+             <div class="education-block fade-in-up">
+                 <h3 style="color:var(--white); margin-bottom:20px;">Education</h3>
+                 <div style="margin-bottom: 20px;">
+                    <h4 style="color:var(--accent);">Government Technical College</h4>
+                    <p style="color:var(--text-secondary); font-size: 0.9rem;">Senior Secondary School Cert. (2016-2022)</p>
+                 </div>
+                 <div style="margin-bottom: 20px;">
+                    <h4 style="color:var(--accent);">BITCAGS LTD</h4>
+                    <p style="color:var(--text-secondary); font-size: 0.9rem;">Cert. in Computer Training & Graphics</p>
+                 </div>
+             </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title fade-in-up">Where I've Worked</h2>
+        
+        <div class="timeline">
+            <!-- Role 1 -->
+            <div class="timeline-item left fade-in-up">
+                <div class="content-card">
+                    <h3 class="card-role">CEO / Founder</h3>
+                    <span class="card-company">Abu-Abdurrahman CodeVerge Technology</span>
+                    <p class="card-date">Present</p>
+                    <ul class="card-desc">
+                        <li>Leading strategy and technical direction for the company.</li>
+                        <li>Driving innovation in software development and client digital solutions.</li>
+                        <li>Registered company (RC:8640603) focusing on premium tech services.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Role 2 -->
+            <div class="timeline-item right fade-in-up">
+                <div class="content-card">
+                    <h3 class="card-role">Co-Founder / CTO</h3>
+                    <span class="card-company">NextGen Digital Hub</span>
+                    <p class="card-date">Present</p>
+                    <ul class="card-desc">
+                        <li>Overseeing technical architecture and digital literacy programs.</li>
+                        <li>Collaborating with teams to deploy modern web infrastructure.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Role 3 -->
+            <div class="timeline-item left fade-in-up">
+                <div class="content-card">
+                    <h3 class="card-role">Head / Director of ICT & Logistics</h3>
+                    <span class="card-company">Cluster Synergy Limited</span>
+                    <p class="card-date">Recent</p>
+                    <ul class="card-desc">
+                        <li>Managed large-scale ICT logistics and operations.</li>
+                        <li>Implemented system optimizations to improve workflow efficiency.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Role 4 -->
+            <div class="timeline-item right fade-in-up">
+                <div class="content-card">
+                    <h3 class="card-role">Assistant Director of Operations</h3>
+                    <span class="card-company">BITCAGS LTD</span>
+                    <p class="card-date">2022 - Present</p>
+                    <ul class="card-desc">
+                        <li>Supervising daily operations and administrative tasks.</li>
+                        <li>Supporting IT infrastructure and computer maintenance.</li>
+                        <li>Collaborating in planning and implementing ICT initiatives for clients.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects / Portfolio Section (Placeholder for Future Works) -->
+    <section id="projects">
+        <h2 class="section-title fade-in-up">What I've Built</h2>
+        <div style="text-align: center; color: var(--text-secondary);" class="fade-in-up">
+            <div style="background: var(--bg-secondary); padding: 40px; border-radius: 8px; margin-bottom: 20px;">
+                <i class="fas fa-laptop-code" style="font-size: 3rem; color: var(--accent); margin-bottom: 20px;"></i>
+                <h3 style="color: var(--white); margin-bottom: 10px;">Portfolio & Client Projects</h3>
+                <p>Various projects involving Full Stack Web Development, Graphic Design Branding, and Networking Architecture are currently under NDA or development. <br> Contact me for a private showcase.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-container fade-in-up">
+            <p class="hero-subtitle">What's Next?</p>
+            <h2 class="hero-title" style="font-size: 3rem;">Get In Touch</h2>
+            <p class="contact-text">
+                Although I'm currently leading operations at multiple firms, my inbox is always open. Whether you have a question, a project proposal, or just want to say hi, I'll get back to you!
+            </p>
+            
+            <form id="whatsappForm" class="contact-form" onsubmit="sendToWhatsapp(event)">
+                <div class="input-group">
+                    <input type="text" id="name" class="input-field" placeholder="Your Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" class="input-field" placeholder="Your Email" required>
+                </div>
+                <div class="input-group">
+                    <textarea id="message" class="input-field" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Say Hello <i class="fab fa-whatsapp"></i></button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>Designed & Built by Aliyu Bashir Lawan</p>
+         <a href="https://dambazau04.github.io/Ab2/"><p style="margin-top:5px; font-size: 0.8rem;">&copy; 2024 Abu-Abdurrahman CodeVerge Technology</p>
+        <div style="margin-top: 15px;"></a>
+            <a href="#" style="margin: 0 10px;"><i class="fab fa-github"></i></a>
+            <a href="#" style="margin: 0 10px;"><i class="fab fa-linkedin"></i></a>
+            <a href="#" style="margin: 0 10px;"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // WhatsApp Redirection Logic
+        function sendToWhatsapp(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const phoneNumber = "2348107907647"; // Aliyu's Number from CV
+
+            // Constructing the message
+            const whatsappMessage = `*New Portfolio Inquiry*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Message:*%0A${message}`;
+
+            const url = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+
+            // Open WhatsApp
+            window.open(url, '_blank');
+        }
+
+        // Intersection Observer for Fade-in Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach((element) => {
+            observer.observe(element);
+        });
+
+    </script>
+</body>
+</html>
